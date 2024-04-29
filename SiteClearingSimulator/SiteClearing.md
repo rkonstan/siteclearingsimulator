@@ -2,7 +2,7 @@
 
 _What we know from requirements:_
 - Inputs include the width and height (dimensions) of site area
-- Inputs include a commond from trainee
+- Inputs include a command from trainee
 - Based on the example inputs, trainee enters one command at a time
 - The bulldozer can only move forward
 
