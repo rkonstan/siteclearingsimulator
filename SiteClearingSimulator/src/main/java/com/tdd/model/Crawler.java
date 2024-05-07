@@ -28,19 +28,13 @@ public class Crawler extends Bulldozer {
     }
 
     @Override
-    public String turnLeft(String command) {
-        if (command.equals(SiteClearingConstants.LEFT)) {
-            return orientation = SiteClearingConstants.NORTH;
-        }
-        return "";
+    public void turnLeft(String command) {
+         orientation = SiteClearingConstants.NORTH;
     }
 
     @Override
-    public String turnRight(String command) {
-        if (command.equals(SiteClearingConstants.RIGHT)) {
-            orientation = SiteClearingConstants.EAST;
-        }
-        return "";
+    public void turnRight(String command) {
+        orientation = SiteClearingConstants.EAST;
     }
 
     @Override
@@ -56,7 +50,7 @@ public class Crawler extends Bulldozer {
     public boolean inspectMachine() {
         // Scan outside of machine for damaged parts
         // Check oil and hydraulic fluid leaks
-        // Check all door and hood latchs lock in place properly
+        // Check all door and hood latches lock in place properly
         // Check levels of fuel, oil, engine coolant, transmission oil and hydraulic fluid
         return true;
     }
