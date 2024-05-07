@@ -1,4 +1,4 @@
-package com.tdd;
+package com.tdd.constants;
 
 public class SiteClearingConstants {
     public static final String EAST = "E";

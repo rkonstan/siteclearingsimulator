@@ -1,18 +1,22 @@
 package com.tdd;
 
+import com.tdd.model.Bulldozer;
+import com.tdd.model.Crawler;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class SiteClearingSimulatorTest {
 
-    private SiteClearingSimulator siteClearingSimulator = new SiteClearingSimulator();
+    private Bulldozer bulldozer = new Crawler();
+    SiteClearingSimulator siteClearingSimulator = new SiteClearingSimulator(bulldozer);
 
     @Test
     public void bulldozerPositionShouldBe_0_0_E() {
         siteClearingSimulator.getBulldozerPosition(6,6,"A0");
         siteClearingSimulator.getBulldozerPosition(6,6,"");
-        assertEquals("0,0,E", siteClearingSimulator.getBulldozerPosition(6,6,"A0"));
+        Assert.assertEquals("0,0,E", siteClearingSimulator.getBulldozerPosition(6,6,"A0"));
     }
 
     @Test
@@ -36,10 +40,24 @@ public class SiteClearingSimulatorTest {
     }
 
     @Test
-    public void bulldozerPositionShouldBe_4_3_E() {
+    public void bulldozerPositionShouldBe_5_5_N() {
         siteClearingSimulator.getBulldozerPosition(6,6, "A4");
         siteClearingSimulator.getBulldozerPosition(6,6, "L");
         siteClearingSimulator.getBulldozerPosition(6,6, "A3");
-        assertEquals("4,3,E", siteClearingSimulator.getBulldozerPosition(6,6, "R"));
+        siteClearingSimulator.getBulldozerPosition(6,6, "R");
+        siteClearingSimulator.getBulldozerPosition(6,6, "A1");
+        siteClearingSimulator.getBulldozerPosition(6,6, "L");
+        assertEquals("5,5,N", siteClearingSimulator.getBulldozerPosition(6,6, "A2"));
+    }
+
+    @Test
+    public void bulldozerPositionShouldBe_3_5_N() {
+        siteClearingSimulator.getBulldozerPosition(6,6, "A2");
+        siteClearingSimulator.getBulldozerPosition(6,6, "L");
+        siteClearingSimulator.getBulldozerPosition(6,6, "A2");
+        siteClearingSimulator.getBulldozerPosition(6,6, "R");
+        siteClearingSimulator.getBulldozerPosition(6,6, "A1");
+        siteClearingSimulator.getBulldozerPosition(6,6, "L");
+        assertEquals("3,5,N", siteClearingSimulator.getBulldozerPosition(6,6, "A3"));
     }
 }
