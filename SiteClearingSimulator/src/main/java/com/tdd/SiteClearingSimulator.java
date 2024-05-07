@@ -11,7 +11,7 @@ public class SiteClearingSimulator {
     }
 
     public String getBulldozerPosition(int width, int height, String command) {
-        if (width < 0 || height < 0) {
+        if (width <= 0 || height <= 0) {
             return SiteClearingConstants.DEFAULT_POSITION;
         }
         if (bulldozer.inspectMachine() && bulldozer.warmUpMachine()) {

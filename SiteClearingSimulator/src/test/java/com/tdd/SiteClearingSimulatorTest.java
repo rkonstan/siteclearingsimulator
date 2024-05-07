@@ -13,10 +13,16 @@ public class SiteClearingSimulatorTest {
     SiteClearingSimulator siteClearingSimulator = new SiteClearingSimulator(bulldozer);
 
     @Test
-    public void bulldozerPositionShouldBe_0_0_E() {
+    public void bulldozerPositionShouldBe_0_0_E_inStartingPosition() {
         siteClearingSimulator.getBulldozerPosition(6,6,"A0");
         siteClearingSimulator.getBulldozerPosition(6,6,"");
         Assert.assertEquals("0,0,E", siteClearingSimulator.getBulldozerPosition(6,6,"A0"));
+    }
+
+    @Test
+    public void bulldozerPositionShouldBe_0_0_E_whenSiteAreaNotGiven() {
+        Assert.assertEquals("0,0,E",
+                siteClearingSimulator.getBulldozerPosition(0,0,"A0"));
     }
 
     @Test
