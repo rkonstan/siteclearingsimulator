@@ -5,6 +5,11 @@ import static java.lang.Integer.parseInt;
 
 public class SiteClearingUtils {
 
+    // suppress default constructor for non-instantiability
+    private SiteClearingUtils() {
+        throw new UnsupportedOperationException();
+    }
+
     // displays the position of the bulldozer on a grid marked X.
     public static void displaySiteArea(String[][] siteArea, int movesForwardWidth, int movesForwardHeight) {
         int resetOrigin = siteArea.length - 1;
