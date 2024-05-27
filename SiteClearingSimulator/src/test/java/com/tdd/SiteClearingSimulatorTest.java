@@ -2,10 +2,9 @@ package com.tdd;
 
 import com.tdd.model.Bulldozer;
 import com.tdd.model.Crawler;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SiteClearingSimulatorTest {
 
@@ -16,12 +15,12 @@ public class SiteClearingSimulatorTest {
     public void bulldozerPositionShouldBe_0_0_E_inStartingPosition() {
         siteClearingSimulator.getBulldozerPosition(6,6,"A0");
         siteClearingSimulator.getBulldozerPosition(6,6,"");
-        Assert.assertEquals("0,0,E", siteClearingSimulator.getBulldozerPosition(6,6,"A0"));
+        assertEquals("0,0,E", siteClearingSimulator.getBulldozerPosition(6,6,"A0"));
     }
 
     @Test
     public void bulldozerPositionShouldBe_0_0_E_whenSiteAreaNotGiven() {
-        Assert.assertEquals("0,0,E",
+        assertEquals("0,0,E",
                 siteClearingSimulator.getBulldozerPosition(0,0,"A0"));
     }
 

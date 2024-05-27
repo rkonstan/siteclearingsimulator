@@ -38,4 +38,11 @@ public class SiteClearingUtils {
         return false;
     }
 
+    public static boolean isTurningCommand(String command) {
+        if (command.startsWith(SiteClearingConstants.LEFT) || command.startsWith(SiteClearingConstants.RIGHT)) {
+            return true;
+        }
+        return false;
+    }
+
 }

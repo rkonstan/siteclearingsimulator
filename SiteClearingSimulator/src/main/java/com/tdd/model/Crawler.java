@@ -1,50 +1,14 @@
 package com.tdd.model;
 
 import com.tdd.constants.SiteClearingConstants;
+import com.tdd.strategies.MoveForward;
+import com.tdd.strategies.Turn;
 import com.tdd.util.SiteClearingUtils;
 
 public class Crawler extends Bulldozer {
 
-    private int movesForwardWidth = 0;
-    private int movesForwardHeight = 0;
+    private String movesForward;
     private String orientation = SiteClearingConstants.EAST;
-    private int count;
-
-
-    @Override
-    public void forward(String command) {
-        if (SiteClearingUtils.isActionCommand(command)) {
-            switch (count) {
-                case 0, 2:
-                    movesForwardWidth += SiteClearingUtils.getNumberOfMovesFromCommand(command);
-                    count++;
-                    break;
-                case 1, 3:
-                    movesForwardHeight += SiteClearingUtils.getNumberOfMovesFromCommand(command);
-                    count++;
-                    break;
-            }
-        }
-    }
-
-    @Override
-    public void turnLeft(String command) {
-         orientation = SiteClearingConstants.NORTH;
-    }
-
-    @Override
-    public void turnRight(String command) {
-        orientation = SiteClearingConstants.EAST;
-    }
-
-    @Override
-    public String position(int width, int height) {
-        if (movesForwardWidth < 0 || movesForwardHeight < 0 ||
-                movesForwardWidth >= width || movesForwardHeight >= height) {
-            return SiteClearingConstants.DEFAULT_POSITION;
-        }
-        return String.format("%s,%s,%s", movesForwardWidth, movesForwardHeight, orientation);
-    }
 
     @Override
     public boolean inspectMachine() {
@@ -57,23 +21,36 @@ public class Crawler extends Bulldozer {
 
     @Override
     public boolean warmUpMachine() {
-        // let oil lubricate all parts and cooling system to reach operational temperature
+        // let oil lubricate all parts and let cooling system reach operational temperature
         return true;
     }
 
     @Override
-    public void start(String command) {
+    public String start(int width, int height, String command) {
         switch (command) {
             case String cmd -> {
-                if (cmd.startsWith(SiteClearingConstants.ACTION)) {
-                    forward(cmd);
-                } else if (cmd.startsWith(SiteClearingConstants.LEFT)) {
-                    turnLeft(cmd);
-                } else if (cmd.startsWith(SiteClearingConstants.RIGHT)) {
-                    turnRight(cmd);
+                if (SiteClearingUtils.isActionCommand(cmd)) {
+                    if (isDirectionalNull()) {
+                        directional = new MoveForward();
+                    }
+                    movesForward = directional.direction(width, height, cmd);
+                } else if (SiteClearingUtils.isTurningCommand(cmd)) {
+                    if (movesForward.equals("0,0")) {
+                        return orientation;
+                    }
+                    turnable = new Turn();
+                    orientation = turnable.turn(cmd);
                 }
             }
         }
+        return String.format("%s,%s", movesForward, orientation);
+    }
+
+    private boolean isDirectionalNull() {
+        if (directional == null) {
+            return true;
+        }
+        return false;
     }
 
 }

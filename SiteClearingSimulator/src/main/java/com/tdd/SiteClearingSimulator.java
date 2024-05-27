@@ -15,9 +15,10 @@ public class SiteClearingSimulator {
             return SiteClearingConstants.DEFAULT_POSITION;
         }
         if (bulldozer.inspectMachine() && bulldozer.warmUpMachine()) {
-            bulldozer.start(command);
+            return bulldozer.start(width, height, command);
         }
-        return bulldozer.position(width, height);
+        return "Make sure pre-safety checks are completed!";
     }
+
 }
 
