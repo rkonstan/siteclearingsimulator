@@ -1,48 +1,61 @@
 package com.tdd;
 
-import com.tdd.model.Bulldozer;
-import com.tdd.model.Crawler;
-import org.junit.Assert;
-import org.junit.Test;
+import com.tdd.observers.MoveForward;
+import com.tdd.observers.Turn;
+import com.tdd.subjects.Bulldozer;
+import com.tdd.subjects.Crawler;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SiteClearingSimulatorTest {
 
     private Bulldozer bulldozer = new Crawler();
+    MoveForward moveForward = new MoveForward(bulldozer);
+    Turn turn = new Turn(bulldozer);
     SiteClearingSimulator siteClearingSimulator = new SiteClearingSimulator(bulldozer);
+    String bulldozerPosition;
 
     @Test
     public void bulldozerPositionShouldBe_0_0_E_inStartingPosition() {
         siteClearingSimulator.getBulldozerPosition(6,6,"A0");
         siteClearingSimulator.getBulldozerPosition(6,6,"");
-        Assert.assertEquals("0,0,E", siteClearingSimulator.getBulldozerPosition(6,6,"A0"));
+        siteClearingSimulator.getBulldozerPosition(6,6,"A0");
+        bulldozerPosition = String.format("%s,%s", moveForward.position(), turn.position());
+        assertEquals("0,0,E", bulldozerPosition);
     }
 
     @Test
     public void bulldozerPositionShouldBe_0_0_E_whenSiteAreaNotGiven() {
-        Assert.assertEquals("0,0,E",
-                siteClearingSimulator.getBulldozerPosition(0,0,"A0"));
+        siteClearingSimulator.getBulldozerPosition(0,0,"A0");
+        bulldozerPosition = String.format("%s,%s", moveForward.position(), turn.position());
+        assertEquals("0,0,E", bulldozerPosition);
     }
 
     @Test
     public void bulldozerPositionShouldBe_2_1_N() {
         siteClearingSimulator.getBulldozerPosition(6,6,"A2");
         siteClearingSimulator.getBulldozerPosition(6,6,"L");
-        assertEquals("2,1,N", siteClearingSimulator.getBulldozerPosition(6,6,"A1"));
+        siteClearingSimulator.getBulldozerPosition(6,6,"A1");
+        bulldozerPosition = String.format("%s,%s", moveForward.position(), turn.position());
+        assertEquals("2,1,N", bulldozerPosition);
     }
 
     @Test
     public void bulldozerPositionShouldBe_0_0_E_whenGivenNegativeNumber() {
         siteClearingSimulator.getBulldozerPosition(6,6, "A-3");
         siteClearingSimulator.getBulldozerPosition(6,6, "L");
-        assertEquals("0,0,E", siteClearingSimulator.getBulldozerPosition(6,6, "A-1"));
+        siteClearingSimulator.getBulldozerPosition(6,6, "A-1");
+        bulldozerPosition = String.format("%s,%s", moveForward.position(), turn.position());
+        assertEquals("0,0,E", bulldozerPosition);
     }
     @Test
     public void bulldozerPositionShouldBe_0_0_E_whenGivenNumberLargerThanSiteArea() {
         siteClearingSimulator.getBulldozerPosition(6,6, "A6");
         siteClearingSimulator.getBulldozerPosition(6,6, "L");
-        assertEquals("0,0,E", siteClearingSimulator.getBulldozerPosition(6,6, "A8"));
+        siteClearingSimulator.getBulldozerPosition(6,6, "A8");
+        bulldozerPosition = String.format("%s,%s", moveForward.position(), turn.position());
+        assertEquals("0,0,E", bulldozerPosition);
     }
 
     @Test
@@ -53,7 +66,9 @@ public class SiteClearingSimulatorTest {
         siteClearingSimulator.getBulldozerPosition(6,6, "R");
         siteClearingSimulator.getBulldozerPosition(6,6, "A1");
         siteClearingSimulator.getBulldozerPosition(6,6, "L");
-        assertEquals("5,5,N", siteClearingSimulator.getBulldozerPosition(6,6, "A2"));
+        siteClearingSimulator.getBulldozerPosition(6,6, "A2");
+        bulldozerPosition = String.format("%s,%s", moveForward.position(), turn.position());
+        assertEquals("5,5,N", bulldozerPosition);
     }
 
     @Test
@@ -64,6 +79,8 @@ public class SiteClearingSimulatorTest {
         siteClearingSimulator.getBulldozerPosition(6,6, "R");
         siteClearingSimulator.getBulldozerPosition(6,6, "A1");
         siteClearingSimulator.getBulldozerPosition(6,6, "L");
-        assertEquals("3,5,N", siteClearingSimulator.getBulldozerPosition(6,6, "A3"));
+        siteClearingSimulator.getBulldozerPosition(6,6, "A3");
+        bulldozerPosition = String.format("%s,%s", moveForward.position(), turn.position());
+        assertEquals("3,5,N", bulldozerPosition);
     }
 }

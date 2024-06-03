@@ -1,7 +1,6 @@
 package com.tdd;
 
-import com.tdd.constants.SiteClearingConstants;
-import com.tdd.model.Bulldozer;
+import com.tdd.subjects.Bulldozer;
 
 public class SiteClearingSimulator {
     private Bulldozer bulldozer;
@@ -10,14 +9,15 @@ public class SiteClearingSimulator {
         this.bulldozer = bulldozer;
     }
 
-    public String getBulldozerPosition(int width, int height, String command) {
+    public void getBulldozerPosition(int width, int height, String command) {
         if (width <= 0 || height <= 0) {
-            return SiteClearingConstants.DEFAULT_POSITION;
+            System.out.println("Site area cannot be zero or less.");
         }
         if (bulldozer.inspectMachine() && bulldozer.warmUpMachine()) {
-            bulldozer.start(command);
+            bulldozer.start(width, height, command);
+        } else {
+            System.out.println("Make sure pre-safety checks are completed!");
         }
-        return bulldozer.position(width, height);
     }
 }
 
