@@ -1,6 +1,9 @@
 package com.tdd.subjects;
 
-public abstract class Bulldozer implements Subject{
+/**
+ * Class for different types of bulldozers to inherit common functionality
+ */
+public abstract class Bulldozer implements Subject {
 
     public abstract boolean inspectMachine();
     public abstract boolean warmUpMachine();

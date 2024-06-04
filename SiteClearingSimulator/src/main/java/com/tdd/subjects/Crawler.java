@@ -5,6 +5,10 @@ import com.tdd.observers.Observables;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A concrete Subject (Publisher) - updates observers when receives commands from
+ * start method.
+ */
 public class Crawler extends Bulldozer {
 
     private List<Observables> observablesList;
