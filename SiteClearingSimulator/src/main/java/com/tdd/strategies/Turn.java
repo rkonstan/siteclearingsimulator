@@ -1,7 +1,9 @@
 package com.tdd.strategies;
 
 import com.tdd.constants.SiteClearingConstants;
-
+/**
+ * A class that encapsulates a behaviour of a bulldozer
+ */
 public class Turn implements Turnable {
 
     private String orientation;

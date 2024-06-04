@@ -5,6 +5,7 @@ import com.tdd.strategies.Turnable;
 
 public abstract class Bulldozer {
 
+    // Behaviour interface types - hold a reference to a specific behaviour at runtime
     Directional directional;
     Turnable turnable;
 

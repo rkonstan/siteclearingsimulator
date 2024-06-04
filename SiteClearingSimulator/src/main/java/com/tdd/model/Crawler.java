@@ -33,13 +33,13 @@ public class Crawler extends Bulldozer {
                     if (isDirectionalNull()) {
                         directional = new MoveForward();
                     }
-                    movesForward = directional.direction(width, height, cmd);
+                    movesForward = directional.direction(width, height, cmd); // delegate to behaviour class
                 } else if (SiteClearingUtils.isTurningCommand(cmd)) {
                     if (movesForward.equals("0,0")) {
                         return orientation;
                     }
                     turnable = new Turn();
-                    orientation = turnable.turn(cmd);
+                    orientation = turnable.turn(cmd); // delegate to behaviour class
                 }
             }
         }

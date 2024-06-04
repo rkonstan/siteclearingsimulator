@@ -2,6 +2,9 @@ package com.tdd.strategies;
 
 import com.tdd.util.SiteClearingUtils;
 
+/**
+ * A class that encapsulates one behaviour of a bulldozer
+ */
 public class MoveForward implements Directional, Positional {
 
     private int movesForwardWidth = 0;
