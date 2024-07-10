@@ -1,33 +1,27 @@
 ## Site Clearing Simulator
 
-_What we know from requirements:_
-- Inputs include the width and height (dimensions) of site area
-- Inputs include a command from trainee
-- Based on the example inputs, trainee enters one command at a time
-- The bulldozer can only move forward
+_Before a supervisor can work at a construction site, they are to be trained in how to coordinate with a bulldozer operator to clear the site in preparation for building. The training consists of interactive sessions with a simulator, which you will write._
 
-_Implementation steps to fulfill requirements:_
-- Ensure bulldozer is in starting position of 0,0,E when turned on
-  - A0
-  - " " 
-  - A0
-- Ensure bulldozer is in position 2,1,N with command inputs 
+_Application Requirements_
+- Inputs
+  - 1 - The width and length of the site map
+  - 2 - Commands entered by the trainee during the simulation run
+
+- Outputs 
+  - 1 - The position of the bulldozer
+  - L
+  - A1
+- Commands
+  - L: turn the bulldozer to left
+  - R: turn the bulldozer to right
+  - A{number}: this command takes a positive integer parameter and moves the bulldozer forward by {number} blocks
+
+- For example, with the initial position of the bulldozer at (0, 0, E), given the following commands:
   - A2
   - L
   - A1
-- Ensure bulldozer is in starting position of 0,0,E when command entered is negative number
-  - A-3
-  - L
-  - A-1
-- Ensure bulldozer is in starting position of 0,0,E when command entered is larger than site area
-  - A6
-  - L
-  - A8
-- Ensure bulldozer is in position 4,3,E when commands given 
-  - A4
-  - L
-  - A3
-  - R
+- The result position should be
+  - 2,1,N
 
 
 
